@@ -10,7 +10,6 @@ Adotamos a arquitetura em camadas para garantir governança e reusabilidade:
 * **Gold (Refined):** Camada de negócio, com dados agregados para BI.
 
 
-
 ---
 
 ## 🎵 O Projeto Música
