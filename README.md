@@ -11,7 +11,6 @@ Adotamos a arquitetura em camadas para garantir governança e reusabilidade:
 
 
 ---
-
 ## 🎵 O Projeto Música
 O objetivo central é consolidar a jornada do usuário com o conteúdo musical.
 * **Objetivo:** Analisar o comportamento de consumo (streams), a performance do catálogo e a interação dos usuários com as plataformas de música.
