@@ -9,3 +9,4 @@ sources:
     tables:
       - name: Employee
       - name: Customer
+      - name: Invoice
