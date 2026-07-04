@@ -13,7 +13,8 @@ WITH base_data AS (
         case when c.composer is null or c.composer = '' then 'Unknown' else c.composer end as composer,
         d.genre_name,
         e.media_type_name,
-        c.track_id
+        c.track_id,
+        c.playlist_id
     FROM {{ ref('stg_album') }} a
     INNER JOIN {{ ref('stg_artist') }} b ON a.artist_id = b.artist_id
     INNER JOIN {{ ref('stg_track') }} c ON a.album_id = c.album_id
@@ -26,6 +27,7 @@ SELECT
     CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', CONCAT(track_id, '|', artist_name, '|', album_title, '|', track_name)), 2) AS sk_produto,
     
     track_id,
+    playlist_id,
     track_name,
     album_title,
     artist_name,

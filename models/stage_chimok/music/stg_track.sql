@@ -5,7 +5,9 @@
 ) }}
 
 WITH source AS (
-    SELECT * FROM {{ source('Origem_Chimok', 'Track') }}
+    SELECT a.*, b.PlaylistId FROM {{ source('Origem_Chimok', 'Track') }} a
+    left join {{ source('Origem_Chimok', 'PlaylistTrack') }} b 
+    on a.TrackId = b.TrackId
 ),
 
 renamed AS (
@@ -15,7 +17,8 @@ renamed AS (
         CAST(AlbumId AS INT)             AS album_id,
         CAST(MediaTypeId AS INT)         AS media_type_id,
         CAST(GenreId AS INT)             AS genre_id,
-        
+        CAST(PlaylistId AS INT)          AS playlist_id,
+
         -- Detalhes da Faixa
         CAST(Name AS VARCHAR(255))       AS track_name,
         CAST(Composer AS VARCHAR(255))   AS composer,
