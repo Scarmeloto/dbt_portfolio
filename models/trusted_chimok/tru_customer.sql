@@ -16,8 +16,8 @@ WITH base_data AS (
         END AS company,
         city,
         state,
-        email
-
+        email,
+        support_rep_id
     FROM {{ ref('stg_customer') }} 
 
 )
@@ -48,7 +48,8 @@ SELECT
     city,
     state,
     email,
-
+    support_rep_id,
+    
     GETDATE() AS data_de,
     CAST('99991231' AS DATETIME) AS data_ate,
     CAST(1 AS SMALLINT) AS fl_ultima_versao,
