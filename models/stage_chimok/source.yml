@@ -14,3 +14,5 @@ sources:
       - name: Artist
       - name: Genre
       - name: Playlist
+      - name: PlaylistTrack
+      - name: MediaType
