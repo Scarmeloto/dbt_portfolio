@@ -9,3 +9,8 @@ sources:
       - name: Invoice
       - name: InvoiceLine
       - name: Employee
+      - name: Track
+      - name: Album
+      - name: Artist
+      - name: Genre
+      - name: Playlist
