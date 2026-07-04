@@ -7,3 +7,4 @@ sources:
     tables:
       - name: Customer
       - name: Invoice
+      - name: InvoiceLine
