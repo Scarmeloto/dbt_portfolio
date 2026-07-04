@@ -30,10 +30,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
-  portfolio_databricks:
+  portfolio_dbt:
     # 1. Camada Staging: tabelas brutas/limpas, esquemas em 'stg'
     staging:
-      +schema: dbo
+      +schema: stg
       +materialized: view  # staging costuma ser view ou incremental
 
     # 2. Camada Trusted: regras de negócio, tabelas em 'trusted'

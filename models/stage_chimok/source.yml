@@ -1,12 +1,9 @@
-# models/staging/sources.yml
-
 version: 2
 
 sources:
   - name: Origem_Chimok
-    database: Origem_Chimok          # <<< Confirme o nome exato do banco
-    schema: dbo                      # <<< Confirme o schema (geralmente dbo)
+    database: Origem_Chimok
+    schema: dbo
     tables:
-      - name: Employee
       - name: Customer
       - name: Invoice
