@@ -40,6 +40,8 @@ renamed AS (
         GETDATE()                           AS LoadDate,
         'Origem_Chimok'                     AS SourceSystem
     FROM source
+    -- Filtra apenas funcionários de suporte (ajuste o critério conforme seu banco)
+    WHERE Title LIKE '%Support%' OR Title LIKE '%Agent%'
 )
 
 SELECT * FROM renamed

@@ -8,6 +8,7 @@ WITH source AS (
     SELECT * FROM {{ source('Origem_Chimok', 'Track') }}
 ),
 
+
 renamed AS (
     SELECT
         -- IDs e Chaves de negócio
