@@ -8,3 +8,4 @@ sources:
       - name: Customer
       - name: Invoice
       - name: InvoiceLine
+      - name: Employee
