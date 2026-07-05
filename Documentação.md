@@ -27,23 +27,51 @@ models/
     └── fact_sales.sql  # Tabela fato centralizada
 
 ## 4. Matriz de Indicadores e Dimensões (Camada Refined)
-A camada Refined organiza os dados no padrão Star Schema para otimização de queries analíticas.
 
+A camada **Refined** organiza os dados em um modelo **Star Schema**, estruturando fatos e dimensões para otimizar consultas analíticas, simplificar o consumo dos dados e melhorar o desempenho das ferramentas de BI.
 
-| Entidade | Tipo | Indicadores / Atributos Chave |
-| :--- | :---: | ---: |
-| fact_sales | fato | Unit Price, Quantity, Line Total, Total Amount |
-| dim_customer | Dimensão | Identificação, Geografia, LTV |
-| dim_music | Dimensão | Título da faixa, Álbum, Artista, Gênero |
-| dim_employee | Dimensão | Nome, Cargo, Data de Admissão |
+### Estrutura das Entidades
 
-## 5. Dicionário de Dados: fact_sales
+| Entidade | Tipo | Indicadores / Atributos Principais |
+|:---------|:-----|:----------------------------------|
+| **fact_sales** | **Fato** | Unit Price, Quantity, Line Total, Total Amount |
+| **dim_customer** | **Dimensão** | Identificação do Cliente, Cidade, Estado, País, LTV |
+| **dim_music** | **Dimensão** | Track ID, Título da Faixa, Álbum, Artista, Gênero |
+| **dim_employee** | **Dimensão** | Nome, Cargo, Data de Admissão |
+| **dim_playlist** | **Dimensão** | Playlist, Quantidade de Faixas |
 
-Coluna,Tipo,Descrição
-sk_invoice_date,VARCHAR(10),Chave substituta para dimensão tempo
-invoice_id,INT,Identificador único da nota fiscal
-invoice_line_id,INT,PK da linha de item (grânulo)
-unit_price,DECIMAL,Preço unitário da faixa
-line_total,DECIMAL,Total da linha (Preço * Quantidade)
-total_amount,DECIMAL,Valor total da nota fiscal
-load_date,DATETIME,Data e hora da carga
+---
+
+### Papel de cada entidade
+
+| Entidade | Descrição |
+|-----------|-----------|
+| **fact_sales** | Armazena as transações de vendas e seus indicadores quantitativos. |
+| **dim_customer** | Contém informações cadastrais e geográficas dos clientes. |
+| **dim_music** | Reúne os atributos relacionados às músicas comercializadas. |
+| **dim_employee** | Identifica o colaborador responsável pela venda. |
+| **dim_playlist** | Disponibiliza informações sobre as playlists associadas às músicas. |
+
+---
+
+### Indicadores (Measures)
+
+| Indicador | Descrição |
+|-----------|-----------|
+| **Unit Price** | Valor unitário da música. |
+| **Quantity** | Quantidade vendida. |
+| **Line Total** | Valor total do item da venda. |
+| **Total Amount** | Valor total da fatura. |
+
+---
+
+### Relacionamentos do Star Schema
+
+| Tabela Fato | Dimensão Relacionada | Chave |
+|-------------|----------------------|--------|
+| fact_sales | dim_customer | sk_cliente |
+| fact_sales | dim_music | sk_produto |
+| fact_sales | dim_employee | sk_funcionario |
+| fact_sales | dim_playlist | sk_playlist |
+
+> **Objetivo da Camada Refined:** disponibilizar dados tratados, padronizados e modelados em formato dimensional (**Star Schema**), proporcionando alta performance para análises, dashboards e consumo por ferramentas de Business Intelligence.
