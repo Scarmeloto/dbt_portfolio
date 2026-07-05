@@ -81,7 +81,7 @@ A camada **Refined** organiza os dados em um modelo **Star Schema**, estruturand
 # 5. Modelo Dimnensional Final (Ambiente Analitico)
 O projeto apresenta um modelo Star Schema:
 
-![Modelo de Dados Dimensional] (https://github.com/Scarmeloto/dbt_portfolio/blob/main/Capturar_estrela.JPG)
+![Modelo de Dados Dimensional](https://github.com/Scarmeloto/dbt_portfolio/blob/main/Capturar_estrela.JPG)
 
 ## Dicionário de Dados – `fact_sales`
 
