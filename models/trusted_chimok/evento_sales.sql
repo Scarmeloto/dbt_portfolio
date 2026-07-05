@@ -8,6 +8,7 @@ WITH base_data AS (
 
     SELECT
 
+        CONVERT(VARCHAR(8), CAST(a.invoice_date  AS DATETIME), 112) AS sk_invoice_date,
         a.invoice_id,
         a.customer_id,
         c.sk_cliente,
@@ -23,7 +24,6 @@ WITH base_data AS (
         f.playlist_id,
         f.sk_playlist,
 
-        a.invoice_date,
         b.unit_price,
         b.quantity,
         b.line_total,

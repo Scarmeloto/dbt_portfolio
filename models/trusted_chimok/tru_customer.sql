@@ -46,7 +46,7 @@ SELECT
     last_name,
     company,
     city,
-    state,
+    case when state = '' or state is null then 'N/A' else state end as state,
     email,
     support_rep_id,
     
