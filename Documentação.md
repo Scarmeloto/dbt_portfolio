@@ -75,3 +75,94 @@ A camada **Refined** organiza os dados em um modelo **Star Schema**, estruturand
 | fact_sales | dim_playlist | sk_playlist |
 
 > **Objetivo da Camada Refined:** disponibilizar dados tratados, padronizados e modelados em formato dimensional (**Star Schema**), proporcionando alta performance para análises, dashboards e consumo por ferramentas de Business Intelligence.
+
+# 5. Dicionário de Dados – `fact_sales`
+
+A tabela **fact_sales** representa a **tabela fato** do modelo dimensional, armazenando as transações de vendas consolidadas e servindo como principal fonte para consultas analíticas e dashboards.
+
+---
+
+## Estrutura da Tabela
+
+| Coluna | Tipo | Descrição |
+|:--------|:-----|:----------|
+| **sk_invoice_date** | VARCHAR(10) | Chave substituta para a dimensão de tempo. |
+| **invoice_id** | INT | Identificador único da nota fiscal. |
+| **invoice_line_id** | INT | Identificador único da linha do item (grão da tabela). |
+| **sk_cliente** | VARCHAR(64) | Chave substituta da dimensão Cliente. |
+| **sk_produto** | VARCHAR(64) | Chave substituta da dimensão Produto (Música). |
+| **sk_funcionario** | VARCHAR(64) | Chave substituta da dimensão Funcionário. |
+| **sk_playlist** | VARCHAR(64) | Chave substituta da dimensão Playlist. |
+| **unit_price** | DECIMAL(10,2) | Valor unitário da faixa. |
+| **quantity** | INT | Quantidade de itens vendidos. |
+| **line_total** | DECIMAL(10,2) | Valor total da linha (*Unit Price × Quantity*). |
+| **total_amount** | DECIMAL(10,2) | Valor total da nota fiscal. |
+| **load_date** | DATETIME | Data e hora da carga na camada Refined. |
+
+---
+
+## Granularidade
+
+A granularidade da tabela é definida por **uma linha por item de nota fiscal**, permitindo análises detalhadas por:
+
+- Cliente
+- Produto (Música)
+- Funcionário
+- Playlist
+- Data
+- Valor da venda
+
+---
+
+## Chaves da Tabela
+
+| Tipo | Colunas |
+|------|---------|
+| **Chave de Negócio** | `invoice_id` + `invoice_line_id` |
+| **Chaves Estrangeiras** | `sk_invoice_date`, `sk_cliente`, `sk_produto`, `sk_funcionario`, `sk_playlist` |
+
+---
+
+# 6. Objetivos e Desafios
+
+## Objetivo
+
+Desenvolver um **pipeline moderno de Engenharia de Dados**, capaz de transformar dados operacionais em informações analíticas confiáveis, escaláveis e de alta disponibilidade para suporte à tomada de decisão.
+
+---
+
+## Objetivos Específicos
+
+- Construir uma arquitetura em camadas (**Landing → Bronze → Silver → Gold/Refined**).
+- Implementar processos de ETL/ELT utilizando **DBT**.
+- Modelar os dados utilizando **Star Schema**.
+- Garantir rastreabilidade e qualidade dos dados durante todo o pipeline.
+- Disponibilizar uma camada otimizada para consumo por ferramentas de BI.
+
+---
+
+## Principais Desafios
+
+| Desafio | Descrição |
+|---------|-----------|
+| **Padronização** | Uniformizar esquemas provenientes de diferentes fontes de dados. |
+| **Escalabilidade** | Implementar cargas incrementais para reduzir tempo de processamento e consumo de recursos. |
+| **Governança** | Garantir unicidade dos registros por meio de *Surrogate Keys* e regras de qualidade. |
+| **Performance** | Otimizar consultas analíticas utilizando modelagem dimensional. |
+| **Manutenibilidade** | Estruturar modelos modulares e reutilizáveis utilizando DBT. |
+
+---
+
+## Benefícios Esperados
+
+- Maior confiabilidade dos dados.
+- Redução do tempo de processamento.
+- Facilidade para manutenção e evolução do pipeline.
+- Alto desempenho em consultas analíticas.
+- Dados preparados para dashboards e análises estratégicas.
+- Arquitetura aderente às boas práticas de Engenharia de Dados.
+
+## 7. Como Executar
+1º Instale as dependências: dbt deps
+2º Valide o projeto: dbt compile
+3º Execute o pipeline: dbt run
