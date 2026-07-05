@@ -1,7 +1,8 @@
 {{ config(
     materialized='incremental',
     unique_key='sk_funcionario',
-    on_schema_change='append_new_columns'
+    database='Trusted_Chimok',
+    schema='tru'
 ) }}
 
 WITH employee AS (

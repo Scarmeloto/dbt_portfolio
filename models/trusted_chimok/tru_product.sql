@@ -1,7 +1,9 @@
 {{
   config(
     materialized='incremental',
-    unique_key='sk_produto'
+    unique_key='sk_produto',
+    database='Trusted_Chimok',
+    schema='tru'
   )
 }}
 

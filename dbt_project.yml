@@ -4,20 +4,23 @@
 # name or the intended use of these models
 name: 'portfolio_dbt'
 version: '1.0.0'
+config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'portfolio_dbt'
+
+
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
 # found in the "models/" directory. You probably won't need to change these!
 model-paths: ["models"]
-analysis-paths: ["analyses"]
-test-paths: ["tests"]
-seed-paths: ["seeds"]
 macro-paths: ["macros"]
-snapshot-paths: ["snapshots"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+analysis-paths: ["analyses"]
 
+target-path: "target"
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
@@ -45,11 +48,15 @@ clean-targets:         # directories to be removed by `dbt clean`
 #     refined:
 #       +schema: gld
 #       +materialized: table
+
 models:
   portfolio_dbt:
     staging:
+      +materialized: view
       +schema: stg
-    trusted:          # O nome da pasta deve ser 'trusted'
-      +schema: tru    # O schema no banco será 'tru'
-    refined:
+    trusted_chimok: # Verifique se a sua pasta se chama "trusted_chimok"
+      +materialized: incremental
+      +schema: tru
+    refined_chimok: # Verifique se a sua pasta se chama "refined_chimok"
+      +materialized: table
       +schema: gld

@@ -1,7 +1,9 @@
 {{ config(
     materialized='incremental',
     unique_key='sk_playlist',
-    on_schema_change='append_new_columns'
+    on_schema_change='append_new_columns',
+    database='Trusted_Chimok',
+    schema='tru'
 ) }}
 
 WITH base_data AS (
