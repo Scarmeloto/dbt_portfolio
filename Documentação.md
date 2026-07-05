@@ -10,6 +10,11 @@ O projeto processa dados transacionais estruturados conforme o modelo relacional
 
 ![Modelo de Dados Relacional](https://github.com/Scarmeloto/dbt_portfolio/blob/main/Capturar.JPG)
 
+## 2.1. Modelo Dimensional (Modelo analitico)
+Projeto apresenta um modelo Star Schema:
+
+![Modelo de Dados Dimensional](https://github.com/Scarmeloto/dbt_portfolio/blob/main/Capturar_estrela.JPG)
+
 ## 3. Estrutura do Projeto
 A organização do projeto segue a separação de responsabilidades para garantir governança e escalabilidade:
 
@@ -79,9 +84,6 @@ A camada **Refined** organiza os dados em um modelo **Star Schema**, estruturand
 > **Objetivo da Camada Refined:** disponibilizar dados tratados, padronizados e modelados em formato dimensional (**Star Schema**), proporcionando alta performance para análises, dashboards e consumo por ferramentas de Business Intelligence.
 
 # 5. Modelo Dimnensional Final (Ambiente Analitico)
-O projeto apresenta um modelo Star Schema:
-
-![Modelo de Dados Dimensional](https://github.com/Scarmeloto/dbt_portfolio/blob/main/Capturar_estrela.JPG)
 
 ## Dicionário de Dados – `fact_sales`
 
