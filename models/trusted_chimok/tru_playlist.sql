@@ -8,7 +8,7 @@ WITH base_data AS (
 
     SELECT DISTINCT
         playlist_id,
-        playlist_name
+        playlist_name,
 
     FROM "Stage_Chimok"."stg"."stg_playlist"
 
